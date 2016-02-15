@@ -1,0 +1,32 @@
+# This is an example systemd config file for the Proxy Configurator For Patroni 
+# You can copy it to "/etc/systemd/system/pc4patroni.service",
+# and then run sudo systemctl daemon-reload
+# this example is for pgbouncer, change the 'After=', User and Group lines if 
+# you want to use
+# haproxy or something else
+
+[Unit]
+Description=A proxy reconfigurator and restarter for Patroni managed clusters 
+After=syslog.target network.target pgbouncer.service
+
+[Service]
+Type=simple
+
+User=pgbouncer
+Group=pgbouncer
+
+
+# Where to send early-startup messages from the server
+# This is normally controlled by the global default set by systemd
+# StandardOutput=syslog
+
+ExecStart=/usr/bin/python /opt/pc4patroni/pc4patroni.py /etc/pc4patroni/settings.yml
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=10
+
+# Always restart the service if it crashes, we want it to continue running 
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

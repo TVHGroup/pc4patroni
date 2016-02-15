@@ -1,0 +1,29 @@
+# Sample Proxy Configurator for Patroni config file
+# how often to check for the current master
+checkfrequency: 5
+# logging level, possible options are here: https://docs.python.org/2/library/logging.html#levels
+logginglevel: WARNING
+scopes:
+  # this scope name is ignored 
+  - mainbatman:
+      # this is the scope as it is configured in the patroni config file
+      scope: batman
+      etcd: 
+        host: localhost:2379
+      services:
+        # service name is ignored, you can put whatever you want here
+        - pgbouncer: 
+            configfiles:
+              # list all config files that you want to change, the name is 
+              # ignored, only template and destination are used
+              # The (jinja2) templates have access to master.host, master.port 
+              # and an array named slaves where each entry has a host 
+              # and port attribute
+              # for writing templates that process the slaves (ie for haproxy)
+              # refer to this documentation: 
+              # http://jinja.pocoo.org/docs/dev/templates/ 
+              - pgbouncer.ini:
+                  template: /etc/pgbouncer/pgbouncer.j2
+                  destination: /etc/pgbouncer/pgbouncer.ini             
+            reloadcommand: kill -HUP `cat /var/run/pgbouncer/pgbouncer.pid`
+ 
