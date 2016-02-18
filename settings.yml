@@ -9,7 +9,7 @@ scopes:
       # this is the scope as it is configured in the patroni config file
       scope: batman
       etcd: 
-        host: be-plw-dwh-0003:2379
+        host: localhost:2379
       services:
         # service name is ignored, you can put whatever you want here
         - pgbouncer: 
