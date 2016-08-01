@@ -2,8 +2,11 @@ pc4patroni
 ==========
 Proxy configurator for [Patroni](https://github.com/zalando/patroni) managed [PostgreSQL](http://www.postgresql.org/) clusters.
 
+
 About
 -----
+PC4Patroni is deprecated, it is no longer needed now that Patroni has confd configuration samples included. 
+
 Pc4Patroni is a simple python script that continuously monitors the configuration of a Patroni managed PostgreSQL cluster and when the master or slaves change it updates the configuration files of your database proxy. Currently it only supports clusters that store their information in [Etcd](https://github.com/coreos/etcd). 
 
 The proxy comes with a sample configuration file for [PgBouncer](https://pgbouncer.github.io). Writing a configuration file for other proxies like [HAProxy](http://www.haproxy.org/) should be straightforward for someone familiar with the chosen solution. It is designed with the intent to be generic enough to support any proxy without coding changes. 
