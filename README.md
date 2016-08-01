@@ -1,6 +1,6 @@
 pc4patroni
 ==========
-Proxy configurator for [Patroni](https://github.com/zalando/patroni) managed [PostgreSQL](http://www.postgresql.org/) clusters.
+Deprecated proxy configurator for [Patroni](https://github.com/zalando/patroni) managed [PostgreSQL](http://www.postgresql.org/) clusters.
 
 
 About
